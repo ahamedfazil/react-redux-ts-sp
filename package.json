@@ -1,0 +1,92 @@
+{
+  "name": "simple-redux-react",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@progress/kendo-theme-default": "^2.54.0",
+    "@progress/kendo-ui": "^2018.2.620",
+    "office-ui-fabric-react": "^5.69.0",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-redux": "^5.0.7",
+    "redux": "^3.7.2",
+    "redux-promise-middleware": "^5.0.0",
+    "redux-thunk": "^2.2.0",
+    "sp-pnp-js": "^3.0.9"
+  },
+  "scripts": {
+    "start": "webpack-dev-server --inline --open --progress --colors --config=webpack/webpack.develop.js --hot",
+    "build": "webpack --config=webpack/webpack.dist.js",
+    "build:test": "webpack --config=webpack/webpack.dist.js --env.ENV=test",
+    "build:qa": "webpack --config=webpack/webpack.dist.js --env.ENV=qa",
+    "build:prod": "webpack --config=webpack/webpack.dist.js --env.ENV=production",
+    "deploy": "gulp --gulpfile gulpfile.js",
+    "deploy:test": "gulp --env=test",
+    "deploy:qa": "gulp --env=qa",
+    "deploy:prod": "gulp --env=production",
+    "fulldeploy": "npm run build && npm run deploy",
+    "fulldeploy:test": "npm run build:test && npm run deploy:test",
+    "fulldeploy:qa": "npm run build:qa && npm run deploy:qa",
+    "fulldeploy:prod": "npm run build:prod && npm run deploy:prod",
+    "test": "jest"
+  },
+  "devDependencies": {
+    "@types/jest": "^22.2.0",
+    "@types/prop-types": "^15.5.2",
+    "@types/react": "^16.0.40",
+    "@types/react-dom": "^16.0.4",
+    "@types/react-redux": "^5.0.21",
+    "@types/redux-logger": "^3.0.5",
+    "@types/redux-promise-middleware": "0.0.9",
+    "@types/request": "^2.47.1",
+    "@types/request-promise": "^4.1.41",
+    "awesome-typescript-loader": "^4.0.1",
+    "clean-webpack-plugin": "^0.1.19",
+    "css-loader": "^0.28.10",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "file-loader": "^1.1.11",
+    "gulp": "^3.9.1",
+    "gulp-spsave": "^3.1.0",
+    "html-webpack-plugin": "^3.0.6",
+    "node-sass": "^4.7.2",
+    "pre-commit": "^1.2.2",
+    "react-hot-loader": "^4.1.2",
+    "redux-devtools-extension": "^2.13.2",
+    "redux-logger": "^3.0.6",
+    "sass-loader": "^6.0.7",
+    "source-map-loader": "^0.2.3",
+    "sp-rest-proxy": "^2.6.1",
+    "string-replace-loader": "^2.1.1",
+    "style-loader": "^0.20.3",
+    "ts-jest": "^22.4.6",
+    "tslint": "^5.9.1",
+    "tslint-loader": "^3.6.0",
+    "typescript": "^2.9.2",
+    "uglifyjs-webpack-plugin": "^1.2.5",
+    "webpack": "^3.11.0",
+    "webpack-cli": "^2.0.13",
+    "webpack-dev-server": "^2.3.0",
+    "webpack-merge": "^4.1.1"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "testRegex": "\\.test\\.tsx$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx"
+    ]
+  },
+  "pre-commit": {
+    "colors": true,
+    "silent": false,
+    "run": [
+      "test"
+    ]
+  },
+  "author": "Ahamed Fazil Buhari",
+  "license": ""
+}

@@ -1,0 +1,13 @@
+@import "~office-ui-fabric-react/dist/sass/References";
+@import "./variables";
+
+
+
+/*Styling print*/
+@media print {
+  /*Setting for print page*/
+  @page {
+    size: auto;
+    margin: 5mm 5mm 5mm 5mm; // 0 0;
+  }
+}
