@@ -21,6 +21,16 @@ export const initialState: IStore = {
       memberOf: [],
       directReports: Object
     }
+  },
+  app: {
+    firstName: "",
+    lastName: "",
+    aboutMe: "",
+    myDynamicTable: {
+      column1: [],
+      column2: [],
+      column3: []
+    }
   }
 };
 

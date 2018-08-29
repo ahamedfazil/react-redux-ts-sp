@@ -9,6 +9,8 @@ import { pnpConfig } from "../config/pnp.config";
 import { getCurrentUser } from "../api/UserAPI";
 import { IAppProps } from "../models/IAppProps";
 import { ICurrentUserState } from "../models/IUserState";
+import { FormRow } from "./Form/FormRow";
+import { TextField } from "office-ui-fabric-react/lib/TextField";
 
 export class App extends React.Component<IAppProps, {}> {
   constructor(props: IAppProps) {
@@ -32,7 +34,23 @@ export class App extends React.Component<IAppProps, {}> {
           </div>
         ) : (
           this.props.store.user.currentUser.isFetched && (
-            <div>Current User is: {userState.firstName}</div>
+            <div>
+<FormRow
+              label={projectCol.GeneralComment.Label}
+              required={projectCol.GeneralComment.IsRequired}
+            >
+             <TextField
+                  multiline
+                  resizable={true}
+                  value={localProjectData.generalComment}
+                  onChanged={value => {
+                    localProjectData.generalComment = value;
+                    this.props.updateProjectData(localProjectData);
+                  }}
+                  disabled={isClosed}
+                />
+
+            </div>
           )
         )}
       </Fabric>
