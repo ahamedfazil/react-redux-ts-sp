@@ -1,7 +1,30 @@
 @import "~office-ui-fabric-react/dist/sass/References";
 @import "./variables";
 
+.row-delimited {
+  border-bottom: 1px solid #cdcdcd;
+  margin: 0 0px !important;
+  padding-top: 25px;
+}
 
+.row-delimiter-header {
+  padding-bottom: 30px;
+}
+
+.field-style {
+  padding-right: 0px !important;
+}
+
+.help-icon {
+  margin-top: -5px;
+  float: right !important;
+}
+
+.right-aligned {
+  float: right;
+  padding: 4px;
+  margin: 4px;
+}
 
 /*Styling print*/
 @media print {
