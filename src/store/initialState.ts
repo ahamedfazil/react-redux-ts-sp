@@ -1,6 +1,13 @@
 import IStore from "./IStore";
 
 export const initialState: IStore = {
+  app: {
+    isInitialized: false,
+    isFetched: false,
+    firstName: "",
+    lastName: "",
+    aboutMe: ""
+  },
   user: {
     isInitialized: false,
     currentUser: {
