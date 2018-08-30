@@ -1,12 +1,18 @@
 import {
   IGetUserActionError,
   IGetUserActionSuccess,
-  IGetUserActionInProgress
+  IGetUserActionInProgress,
+  IGetAppState,
+  IUpdateAppState,
+  IAppStateError
 } from "./IActions";
 
 type ActionTypes =
   | IGetUserActionInProgress
   | IGetUserActionSuccess
-  | IGetUserActionError;
+  | IGetUserActionError
+  | IGetAppState
+  | IUpdateAppState
+  | IAppStateError;
 
 export default ActionTypes;
