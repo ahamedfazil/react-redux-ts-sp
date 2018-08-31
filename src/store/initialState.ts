@@ -1,6 +1,15 @@
 import IStore from "./IStore";
+import { CONST } from "../config/const";
 
 export const initialState: IStore = {
+  app: {
+    isInitialized: false,
+    isFetched: false,
+    firstName: "",
+    lastName: "",
+    aboutMe: "",
+    appTable: [CONST.app.DefaultValues.Table_Empty_Column()]
+  },
   user: {
     isInitialized: false,
     currentUser: {
@@ -20,16 +29,6 @@ export const initialState: IStore = {
       managerId: "",
       memberOf: [],
       directReports: Object
-    }
-  },
-  app: {
-    firstName: "",
-    lastName: "",
-    aboutMe: "",
-    myDynamicTable: {
-      column1: [],
-      column2: [],
-      column3: []
     }
   }
 };

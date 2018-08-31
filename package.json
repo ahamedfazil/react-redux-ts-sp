@@ -5,6 +5,7 @@
   "dependencies": {
     "@progress/kendo-theme-default": "^2.54.0",
     "@progress/kendo-ui": "^2018.2.620",
+    "immutability-helper": "^2.7.1",
     "office-ui-fabric-react": "^5.69.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",

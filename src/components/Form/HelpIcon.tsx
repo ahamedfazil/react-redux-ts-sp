@@ -30,7 +30,10 @@ class HelpIcon extends React.Component<IHelpIconProps, IHelpIconState> {
   render(): JSX.Element {
     const isTeachingBubbleVisible = this.state.isTeachingBubbleVisible;
     return (
-      <div className="help-icon" ref={icon => (this._iconButton = icon)}>
+      <div
+        className="help-icon"
+        ref={icon => (this._iconButton = icon)}
+      >
         <IconButton
           iconProps={{ iconName: "Info" }}
           onClick={this.showCallout}

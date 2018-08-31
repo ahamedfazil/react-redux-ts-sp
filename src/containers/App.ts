@@ -24,7 +24,13 @@ function mapDispatchToProps(dispatch: Dispatch<IStore>) {
     getCurrentUserError: bindActionCreators(
       Actions.getCurrentUserError,
       dispatch
-    )
+    ),
+    getAppState: bindActionCreators(Actions.getAppState, dispatch),
+    updateAppState: bindActionCreators(Actions.updateAppState, dispatch),
+    createRow: bindActionCreators(Actions.createRow, dispatch),
+    updateRow: bindActionCreators(Actions.updateRow, dispatch),
+    removeRow: bindActionCreators(Actions.removeRow, dispatch),
+    errorAppState: bindActionCreators(Actions.errorAppState, dispatch)
   };
 }
 

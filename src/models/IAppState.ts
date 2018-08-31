@@ -1,17 +1,19 @@
 export interface IAppState {
-    firstName: string;
-    lastName: string;
-    aboutMe: string;
-    myDynamicTable: IMyDynamicTabel;
+  isInitialized: boolean;
+  isFetched: boolean;
+  firstName: string;
+  lastName: string;
+  aboutMe: string;
+  appTable: IAppTable[];
 }
 
-export interface IMyDynamicTabel {
-  column1: IMyDynamicTabelColumn[];
-  column2: IMyDynamicTabelColumn[];
-  column3: IMyDynamicTabelColumn[];
-}
-
-export interface IMyDynamicTabelColumn {
+export interface IAppTable {
   key: any;
-  commentValue: string;
+  value: ITableValue;
+}
+
+export interface ITableValue {
+  Col1: string;
+  Col2: string;
+  Col3: string;
 }
