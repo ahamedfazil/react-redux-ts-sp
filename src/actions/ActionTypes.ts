@@ -4,7 +4,10 @@ import {
   IGetUserActionInProgress,
   IGetAppState,
   IUpdateAppState,
-  IAppStateError
+  IAppStateError,
+  IUpdateRow,
+  IRemoveRow,
+  ICreateRow
 } from "./IActions";
 
 type ActionTypes =
@@ -13,6 +16,9 @@ type ActionTypes =
   | IGetUserActionError
   | IGetAppState
   | IUpdateAppState
+  | ICreateRow
+  | IRemoveRow
+  | IUpdateRow
   | IAppStateError;
 
 export default ActionTypes;

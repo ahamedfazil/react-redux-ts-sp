@@ -1,4 +1,5 @@
 import IStore from "./IStore";
+import { CONST } from "../config/const";
 
 export const initialState: IStore = {
   app: {
@@ -6,7 +7,8 @@ export const initialState: IStore = {
     isFetched: false,
     firstName: "",
     lastName: "",
-    aboutMe: ""
+    aboutMe: "",
+    appTable: [CONST.app.DefaultValues.Table_Empty_Column()]
   },
   user: {
     isInitialized: false,

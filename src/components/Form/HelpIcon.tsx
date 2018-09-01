@@ -25,7 +25,7 @@ class HelpIcon extends React.Component<IHelpIconProps, IHelpIconState> {
     } else {
       this.setState({ isTeachingBubbleVisible: true });
     }
-  };
+  }
 
   render(): JSX.Element {
     const isTeachingBubbleVisible = this.state.isTeachingBubbleVisible;

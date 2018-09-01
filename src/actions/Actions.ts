@@ -1,7 +1,7 @@
 import keys from "./ActionTypeKey";
 import * as IActions from "./IActions";
 import { ICurrentUserState } from "../models/IUserState";
-import { IAppState } from "../models/IAppState";
+import { IAppState, IAppTable } from "../models/IAppState";
 //#region User Actions
 export function getCurrentUserInProgress(): IActions.IGetUserActionInProgress {
   return {
@@ -47,6 +47,36 @@ export function updateAppState(app: IAppState): IActions.IUpdateAppState {
     type: keys.UPDATE_APP_STATE,
     payload: {
       app
+    }
+  };
+}
+
+
+export function createRow(value: IAppTable): IActions.ICreateRow {
+  return {
+    type: keys.CREATE_ROW,
+    payload: {
+      value
+    }
+  };
+}
+
+export function removeRow(index: number): IActions.IRemoveRow {
+  return {
+    type: keys.REMOVE_ROW,
+    payload: {
+      index
+    }
+  };
+}
+
+export function updateRow(index: number, type: string, value: any): IActions.IUpdateRow {
+  return {
+    type: keys.UPDATE_ROW,
+    payload: {
+      index,
+      type,
+      value
     }
   };
 }
