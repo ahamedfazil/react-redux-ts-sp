@@ -1,7 +1,7 @@
 import { Action } from "redux";
 import keys from "./ActionTypeKey";
 import { ICurrentUserState } from "../models/IUserState";
-import { IAppState } from "../models/IAppState";
+import { IAppState, IAppTable } from "../models/IAppState";
 
 //#region UserActions
 export interface IGetUserActionInProgress extends Action {
@@ -34,6 +34,29 @@ export interface IUpdateAppState extends Action {
   readonly type: keys.UPDATE_APP_STATE;
   payload: {
     app: IAppState;
+  };
+}
+
+export interface ICreateRow extends Action {
+  readonly type: keys.CREATE_ROW;
+  payload: {
+    value: IAppTable;
+  };
+}
+
+export interface IRemoveRow extends Action {
+  readonly type: keys.REMOVE_ROW;
+  payload: {
+    index: number;
+  };
+}
+
+export interface IUpdateRow extends Action {
+  readonly type: keys.UPDATE_ROW;
+  payload: {
+    index: number;
+    type: string;
+    value: any;
   };
 }
 

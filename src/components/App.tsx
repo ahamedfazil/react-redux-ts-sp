@@ -17,6 +17,7 @@ import { CONST } from "../config/const";
 import { IAppState } from "../models/IAppState";
 import { DefaultButton } from "office-ui-fabric-react/lib/Button";
 import { AppPanel } from "./Form/AppPanel";
+import MyDynamicTable from "../containers/Form/MyDynamicTable";
 
 export class App extends React.Component<IAppProps, {}> {
   constructor(props: IAppProps) {
@@ -97,6 +98,8 @@ export class App extends React.Component<IAppProps, {}> {
               />
               <AppPanel appState={this.props.store.app}></AppPanel>
             </FormRow>
+            <br/>
+            <MyDynamicTable />
           </div>
         )}
       </Fabric>
