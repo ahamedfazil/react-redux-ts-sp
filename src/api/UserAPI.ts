@@ -1,6 +1,8 @@
 import pnp from "sp-pnp-js/lib/pnp";
 import { CONST } from "../config/const";
 import { IAppProps } from "../models/IAppProps";
+import { ICurrentUserState } from "../models/IUserState";
+import update from "immutability-helper";
 
 export const getUserByID = (userID: any) => {
   return pnp.sp.web.siteUsers
@@ -12,6 +14,9 @@ export const getUserByID = (userID: any) => {
 };
 
 export async function getCurrentUser(props: IAppProps) {
+  let userState: ICurrentUserState = update(props.store.user.currentUser, {
+    memberOf: { $set: [] }
+  });
   if (!props.store.user.currentUser.isFetched) {
     // Dispatch an Action for getCurrentUser in Progress
     props.getCurrentUserInProgress();
@@ -20,10 +25,10 @@ export async function getCurrentUser(props: IAppProps) {
       const userDataResponse = await pnp.sp.web.currentUser
         .get()
         .then(response => {
-          props.store.user.currentUser.id = response.Id;
-          props.store.user.currentUser.loginName = response.LoginName;
-          props.store.user.currentUser.email = response.Email;
-          props.store.user.currentUser.name = response.Title;
+          userState.id = response.Id;
+          userState.loginName = response.LoginName;
+          userState.email = response.Email;
+          userState.name = response.Title;
           return response;
         });
 
@@ -44,38 +49,38 @@ export async function getCurrentUser(props: IAppProps) {
       Promise.all([userPropertiesPromise, userGroupsPromise])
         .then(function(response) {
           let propertyResponse = response[0];
-          props.store.user.currentUser.directReports =
+          userState.directReports =
             propertyResponse.DirectReports.results;
           let resultProps = propertyResponse.UserProfileProperties.results;
           for (let prop of resultProps) {
             if (prop.Key === "AccountName") {
-              props.store.user.currentUser.accountName = prop.Value;
+              userState.accountName = prop.Value;
             } else if (prop.Key === "FirstName") {
-              props.store.user.currentUser.firstName = prop.Value;
+              userState.firstName = prop.Value;
             } else if (prop.Key === "LastName") {
-              props.store.user.currentUser.lastName = prop.Value;
+              userState.lastName = prop.Value;
             } else if (prop.Key === "costCenter") {
-              props.store.user.currentUser.costCenter = prop.Value;
+              userState.costCenter = prop.Value;
             } else if (prop.Key === "DepartmentTitle") {
-              props.store.user.currentUser.department = prop.Value;
+              userState.department = prop.Value;
             } else if (prop.Key === "Manager") {
-              props.store.user.currentUser.managerId = prop.Value;
+              userState.managerId = prop.Value;
             }
           }
           let groupsResponse = response[1];
           for (let groupTitle of groupsResponse) {
-            props.store.user.currentUser.memberOf.push(groupTitle.Title);
+            userState.memberOf.push(groupTitle.Title);
           }
-          props.store.user.currentUser.isAdmin = props.store.user.currentUser.memberOf.includes(
+          userState.isAdmin = userState.memberOf.includes(
             CONST.site.AdminGroup
           );
-          props.store.user.currentUser.isUser = props.store.user.currentUser.memberOf.includes(
+          userState.isUser = userState.memberOf.includes(
             CONST.site.UserGroup
           );
 
           //Dispatch an Action for Success in getCurrentUser
-          props.store.user.currentUser.isFetched = true;
-          props.getCurrentUserSuccess(props.store.user.currentUser);
+          userState.isFetched = true;
+          props.getCurrentUserSuccess(userState);
         })
         .catch(error => {
           console.log(error);
