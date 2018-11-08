@@ -8,6 +8,7 @@ import {
 } from "../actions/IActions";
 import initialState from "../store/initialState";
 import { IAppState } from "../models/IAppState";
+import update from "immutability-helper";
 
 export const appReducer: Reducer<IAppState> = (
   state: IAppState = initialState.app,
@@ -34,11 +35,14 @@ function onGetAppState(currentState: IAppState, action: IGetAppState) {
 }
 
 function onUpdateAppState(currentState: IAppState, action: IUpdateAppState) {
-  return {
-    ...currentState,
-    isFetched: true,
-    app: action.payload.app
-  };
+  // return {
+  //   ...currentState,
+  //   isFetched: true,
+  //   app: action.payload.app
+  // };
+  return update(currentState, {
+    $set: action.payload.app
+  });
 }
 
 function onGetAppStateError(currentState: IAppState, action: IAppStateError) {

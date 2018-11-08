@@ -17,6 +17,7 @@ import { CONST } from "../config/const";
 import { IAppState } from "../models/IAppState";
 import { DefaultButton } from "office-ui-fabric-react/lib/Button";
 import { AppPanel } from "./Form/AppPanel";
+import update from "immutability-helper";
 
 export class App extends React.Component<IAppProps, {}> {
   constructor(props: IAppProps) {
@@ -32,7 +33,8 @@ export class App extends React.Component<IAppProps, {}> {
   public render(): JSX.Element {
     const userState: ICurrentUserState = this.props.store.user.currentUser;
     const appColumns = CONST.app.Column;
-    let appState: IAppState = this.props.store.app;
+    // let appState: IAppState = update(this.props.store.app, {});
+    let appState: IAppState = Object.assign({}, this.props.store.app);
     return (
       <Fabric>
         <div className="ms-Grid-col ms-sm12 ms-lg12 ms-font-xxl row-delimiter-header">User Detail Form</div>
@@ -54,7 +56,7 @@ export class App extends React.Component<IAppProps, {}> {
               tooltip={appColumns.FirstName.ToolTip}
             >
               <TextField
-                value={appState.firstName}
+                value={this.props.store.app.firstName}
                 onChanged={(value: any) => {
                   appState.firstName = value;
                   this.props.updateAppState(appState);
@@ -66,7 +68,7 @@ export class App extends React.Component<IAppProps, {}> {
               required={appColumns.LastName.IsRequired}
             >
               <TextField
-                value={appState.lastName}
+                value={this.props.store.app.lastName}
                 onChanged={(value: any) => {
                   appState.lastName = value;
                   this.props.updateAppState(appState);
@@ -80,7 +82,7 @@ export class App extends React.Component<IAppProps, {}> {
               <TextField
                 multiline
                 resizable={false}
-                value={appState.aboutMe}
+                value={this.props.store.app.aboutMe}
                 onChanged={(value: any) => {
                   appState.aboutMe = value;
                   this.props.updateAppState(appState);
