@@ -33,7 +33,8 @@ export interface IGetAppState extends Action {
 export interface IUpdateAppState extends Action {
   readonly type: keys.UPDATE_APP_STATE;
   payload: {
-    app: IAppState;
+    value: any;
+    key: string;
   };
 }
 

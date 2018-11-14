@@ -1,7 +1,5 @@
 import * as React from "react";
-import { MessageBar } from "office-ui-fabric-react/lib/MessageBar";
-import { MessageBarType } from "office-ui-fabric-react/lib/components/MessageBar";
-import { Link } from "office-ui-fabric-react/lib/components/Link";
+import { MessageBar, MessageBarType, Link } from "office-ui-fabric-react";
 
 interface IErrorMessageProps {
   error?: any;

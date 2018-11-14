@@ -1,13 +1,14 @@
 import * as React from "react";
 import pnp from "sp-pnp-js/lib/pnp";
-import { Fabric } from "office-ui-fabric-react/lib/Fabric";
-import { Spinner, SpinnerSize } from "office-ui-fabric-react/lib/Spinner";
-import { TextField } from "office-ui-fabric-react/lib/TextField";
-import { initializeIcons } from "@uifabric/icons";
-import "@progress/kendo-ui";
-import "@progress/kendo-theme-default/dist/all.css";
+import {
+  Fabric,
+  initializeIcons,
+  DefaultButton,
+  TextField,
+  Spinner,
+  SpinnerSize
+} from "office-ui-fabric-react";
 import { pnpConfig } from "../config/pnp.config";
-
 import { getCurrentUser } from "../api/UserAPI";
 import { IAppProps } from "../models/IAppProps";
 import { ICurrentUserState } from "../models/IUserState";
@@ -15,8 +16,10 @@ import { ErrorMessage } from "./Form/ErrorMessage";
 import { FormRow } from "./Form/FormRow";
 import { CONST } from "../config/const";
 import { IAppState } from "../models/IAppState";
-import { DefaultButton } from "office-ui-fabric-react/lib/Button";
 import { AppPanel } from "./Form/AppPanel";
+import { Route, Redirect } from "react-router-dom";
+import AppNavigation from "../containers/AppNavigation";
+import HelpIcon from "./Form/HelpIcon";
 
 export class App extends React.Component<IAppProps, {}> {
   constructor(props: IAppProps) {
@@ -32,11 +35,26 @@ export class App extends React.Component<IAppProps, {}> {
   public render(): JSX.Element {
     const userState: ICurrentUserState = this.props.store.user.currentUser;
     const appColumns = CONST.app.Column;
-    let appState: IAppState = this.props.store.app;
+    let appState: IAppState = Object.assign({}, this.props.store.app);
     return (
       <Fabric>
-        <div className="ms-Grid-col ms-sm12 ms-lg12 ms-font-xxl row-delimiter-header">User Detail Form</div>
-        {!userState.isFetched ? (
+        <div className="ms-Grid-col ms-sm12 ms-lg12 ms-font-xxl row-delimiter-header">
+          <div>
+            <div>
+              <Route path="/" component={AppNavigation} />
+
+              <div className="Grid">
+                <Route exact path="/" render={() => <Redirect to="/home" />} />
+                <Route path="/home" render={() => <h4>Home</h4>} />
+                <Route path="/page1" component={HelpIcon} />
+                <Route path="/page2" render={() => <h4>yet to develop</h4>} />
+                <Route path="/page3" render={() => <h4>yet to develop</h4>} />
+              </div>
+            </div>
+          </div>
+          {/* User Detail Form */}
+        </div>
+        {/* {!userState.isFetched ? (
           <div>
             {this.props.store.user.error ? (
               <ErrorMessage
@@ -95,10 +113,10 @@ export class App extends React.Component<IAppProps, {}> {
                   window.history.back();
                 }}
               />
-              <AppPanel appState={this.props.store.app}></AppPanel>
+              <AppPanel appState={this.props.store.app} />
             </FormRow>
           </div>
-        )}
+        )} */}
       </Fabric>
     );
   }

@@ -42,11 +42,12 @@ export function getAppState(app: IAppState): IActions.IGetAppState {
   };
 }
 
-export function updateAppState(app: IAppState): IActions.IUpdateAppState {
+export function updateAppState(value: any, key: string): IActions.IUpdateAppState {
   return {
     type: keys.UPDATE_APP_STATE,
     payload: {
-      app
+      value,
+      key
     }
   };
 }

@@ -1,7 +1,9 @@
 import * as React from "react";
-import { TeachingBubble } from "office-ui-fabric-react/lib/TeachingBubble";
-import { IconButton, IButtonProps } from "office-ui-fabric-react/lib/Button";
-
+import {
+  TeachingBubble,
+  IconButton,
+  IButtonProps
+} from "office-ui-fabric-react";
 interface IHelpIconProps extends IButtonProps {
   tooltip: string;
 }
@@ -25,15 +27,12 @@ class HelpIcon extends React.Component<IHelpIconProps, IHelpIconState> {
     } else {
       this.setState({ isTeachingBubbleVisible: true });
     }
-  };
+  }
 
   render(): JSX.Element {
     const isTeachingBubbleVisible = this.state.isTeachingBubbleVisible;
     return (
-      <div
-        className="help-icon"
-        ref={icon => (this._iconButton = icon)}
-      >
+      <div className="help-icon" ref={icon => (this._iconButton = icon)}>
         <IconButton
           iconProps={{ iconName: "Info" }}
           onClick={this.showCallout}
